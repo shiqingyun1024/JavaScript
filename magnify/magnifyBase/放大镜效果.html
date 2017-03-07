@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜效果</title>
+    <style>
+        .box{
+            width: 350px;
+            height: 350px;
+            margin: 100px 100px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        #sml{
+            width: 350px;
+            height: 350px;
+            background: url(images/001.jpg) no-repeat;
+            position: absolute;
+            cursor: move;
+   /*cursor有四种样式，text，文本式，default小白式即平时箭头那种，move四个小箭头那种，pointer小手*/
+        }
+        #little{
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,0,.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        #big{
+            width: 450px;
+            height: 450px;
+            border: 1px solid #ccc;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            display: none;
+            overflow: hidden;
+        }
+        #big img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<!--布局最重要，合理正确的布局，要不然后面无法进展-->
+<div class="box">
+    <!--一个大盒子里面放一个小盒子和一个大盒子，小盒子里放小图，大盒子里面放大图，小盒子里面的图可以放大，然后显现出大盒子里面的图-->
+    <div id="sml">
+        <!--小盒子里面放一个小透明框，是为了放大效果用，那会有这样的疑惑，为什么不把三个盒子并列呢，因为效果，鼠标一划过sml，就会显现两个另外的盒子，如果little放在box里面了，因为定位的问题sml和little还会重合在一块，到时候在little区域，不在sml区域，little会消失，消失了，又变成sml区域了，又出现了，又该消失了，这样反复会造成bug-->
+        <div id="little"></div>
+    </div>
+    <div id="big">
+        <img src="images/0001.jpg" alt="" id="img">
+   <!--是img这个图片在动，所以还要给它加定位-->
+    </div>
+</div>
+</body>
+</html>
+<script>
+    function $(id){return document.getElementById(id);}
+    var x = 0,y = 0;
+    //leaderX = 0,targetX = 0,leaderY = 0,targetY = 0,在这里没有用到缓动动画，所以这些就没用到
+
+    //这个函数是让鼠标在sml上滑动时little和big能够显现出来
+    $("sml").onmouseover = function(){
+        $("little").style.display = "block";
+        $("big").style.display = "block";
+    }
+
+    //这个函数是让鼠标从sml上滑出时little和big能够隐藏起来
+    $("sml").onmouseout = function() {
+        $("little").style.display = "none";
+        $("big").style.display = "none";
+    }
+
+    //这个函数是让鼠标在sml上移动时，产生一些效果，注意onmousemove和onmouseover的区别 ，一个是移动，一个是滑动
+    $("sml").onmousemove = function(event){
+        var event = event || window.event;//兼容性，所以这样声明
+        x = event.clientX - this.parentNode.offsetLeft - $("little").offsetWidth/2;
+        //这样写是以后改变什么参数了，这儿就不用改了，x轴减去盒子离页面左边的距离offsetLeft
+        y = event.clientY - this.parentNode.offsetTop - $("little").offsetHeight/2;
+       //  原理同上
+
+        if(x < 0) //限定范围，使透明盒子一直在sml这个盒子内
+        {
+            x = 0;
+        }
+        else if(x > this.offsetWidth - $("little").offsetWidth)
+        {
+            x = this.offsetWidth - $("little").offsetWidth;
+        }
+        if(y < 0)//限定范围，使透明盒子一直在sml这个盒子内
+        {
+            y = 0;
+        }
+        else if(y > this.offsetHeight - $("little").offsetHeight)
+        {
+            y = this.offsetHeight - $("little").offsetHeight;
+        }
+
+        //下面就是根据上面的值改变定位的值，谁要移动改变谁的定位值。
+        $("little").style.left = x+"px";
+        $("little").style.top = y+"px";
+        $("img").style.left = -$("big").offsetWidth/$("sml").offsetWidth*x+"px";
+        //这个我要着重写一下，开始不知道怎么让大盒子跟着小盒子里的透明little盒子的位置一直变，而且大盒子的位置变动是相反的
+        //记住旁边大盒子的位置是相反的动，为什么呢，不知道，记住原理和算法吧，记住前面加负号
+        //用big大盒子的宽高比sml小盒子的宽高这样得出比例，就可以根据比例乘以小盒子的移动的xy的值
+        //而可以得到big大盒子里面图片img该移动的位置
+        $("img").style.top = -$("big").offsetHeight/$("sml").offsetHeight*y+"px";
+    }
+//    setInterval(function fun(){ //也可以这样写，只不过略显麻烦了
+//        leaderX = leaderX + (targetX - leaderX)/10;
+//        leaderY = leaderY + (targetY - leaderY)/10;
+//        $("little").style.left = leaderX+"px";
+//        $("little").style.top = leaderY+"px";
+//    },10);
+</script>

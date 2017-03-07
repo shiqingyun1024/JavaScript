@@ -1,0 +1,14 @@
+.box{
+    width: 322px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+}

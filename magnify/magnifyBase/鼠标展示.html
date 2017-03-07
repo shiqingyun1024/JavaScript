@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标展示</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            border-top: 1px solid #ccc;
+        }
+        #box{
+            height: 71px;
+            width: 360px;
+            padding-top: 360px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            background: url(images/01big.jpg) no-repeat top center;
+        }
+        #box li{
+            float: left;
+            cursor: pointer;
+        }
+    </style>
+    <!--<script>-->
+        <!--window.onload = function(){   它为入口函数-->
+<!--//            var li02 = document.getElementById("li02");-->
+<!--//            li02.onmouseover = function(){-->
+<!--//                box.style.backgroundImage = "url(images/02big.jpg)";-->
+<!--//            }-->
+             <!--var box = document.getElementById("box");-->
+             <!--function fun(liid,jpg) { // 函数的封装，谨记-->
+                 <!--//   fun(liid,jpg)是形参，即形式参数-->
+                 <!--var obj = document.getElementById(liid);//  liid是形参，形参是变量，不加引号，相当于 "li01"这个实参-->
+<!--//            即liid="li01"-->
+                 <!--obj.onmouseover = function () {-->
+                     <!--box.style.backgroundImage = jpg;-->
+<!--//jpg也是形参，形参是变量，不加引号，相当于 "url(images/02big.jpg)"这个实参-->
+<!--//               即jpg= "url(images/02big.jpg)"-->
+                 <!--}-->
+             <!--}-->
+            <!--fun("li01","url(images/01big.jpg)");-->
+            <!--fun("li02","url(images/02big.jpg)");-->
+            <!--fun("li03","url(images/03big.jpg)");-->
+            <!--fun("li04","url(images/04big.jpg)");-->
+            <!--fun("li05","url(images/05big.jpg)");-->
+        <!--}-->
+    <!--</script>-->
+    <!--下面是重复上面的，上面为释义-->
+    <script>
+        window.onload = function(){
+            var box = document.getElementById("box");
+            function fun(liid,jpg) {
+                var obj = document.getElementById(liid);
+                obj.onmouseover = function () {
+                    box.style.backgroundImage = jpg;
+                }
+            }    //记住一定要调用函数，要不然函数白写了，同时调用的时候一定写在函数外面
+                fun("li01","url(images/01big.jpg)");
+                fun("li02","url(images/02big.jpg)");
+                fun("li03","url(images/03big.jpg)");
+                fun("li04","url(images/04big.jpg)");
+                fun("li05","url(images/05big.jpg)");
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li id="li01"><img src="images/01.jpg" alt=""></li>
+        <li id="li02"><img src="images/02.jpg" alt=""></li>
+        <li id="li03"><img src="images/03.jpg" alt=""></li>
+        <li id="li04"><img src="images/04.jpg" alt=""></li>
+        <li id="li05"><img src="images/05.jpg" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>

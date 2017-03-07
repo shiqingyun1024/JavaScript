@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击跟随鼠标</title>
+    <style>
+        #im{
+            width: 88px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="images/img.jpg" alt="" id="im">
+</body>
+</html>
+<script>
+    var im = document.getElementById("im");
+    var leaderX = 0,targetX = 0,leaderY = 0,targetY = 0;
+
+    //document是事件源，onclick是事件，function（）是事件处理程序
+    //event是事件的对象，clientX，clientY是event的常见的属性是当前可见页面中点击位置的xy轴的位置
+    document.onclick = function(event) {//事件的对象
+
+        // 考虑到兼容性，ie678 window.event，其他浏览器event
+        var event = event || window.event;
+
+        //为了让鼠标点击的位置能够跑到这个图的中间
+        //offset家族是重中之重，offsetWidth，offsetHeight
+        targetX = event.clientX - im.offsetWidth/2;
+
+        //为了让鼠标点击的位置能够跑到这个图的中间
+        targetY = event.clientY - im.offsetHeight/2;
+    }
+
+    //定时器开始
+    setInterval(function fun(){
+        leaderX = leaderX + (targetX - leaderX)/10;
+        //缓动动画公式开始，x的位置即水平位置
+        leaderY = leaderY + (targetY - leaderY)/10;
+        //缓动动画公式开始，y的位置即垂直位置
+        im.style.left = leaderX+"px";//水平位置
+        im.style.top = leaderY+"px";//垂直位置
+    },10);
+</script>

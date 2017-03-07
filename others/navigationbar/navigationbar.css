@@ -1,0 +1,69 @@
+*{margin: 0;padding: 0;}
+img{
+    vertical-align: top;
+    /*消除上下图片3像素的边距*/
+}
+/*.all{*/
+/*position: relative;*/
+/*}*/
+.top,.nav{
+    text-align: center;
+}
+.main{
+    width: 1000px;
+    margin: 0 auto;
+}
+.nav{
+    position: relative;
+}
+.close{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 60px;
+    height: 20px;
+    border: 1px solid #ccc;
+    display: none;
+    cursor: default;
+}
+.wrong,.closenav{
+    float: left;
+}
+.wrong{
+    background-color: #aaa;
+    width: 25px;
+}
+.current{
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+.show{
+    display: block;
+    position: fixed;
+    top: 50px;
+    right: 5px;
+}
+.hide{
+    position: static;
+    /*作用是解除定位*/
+}
+.as1{
+    position: absolute;
+    top: 160px;
+    left: 15px;
+}
+/*.as2{*/
+/*position: absolute;*/
+/*top: 250px;*/
+/*right: 15px;*/
+/*}*/
+.back{
+    position: fixed;
+    bottom: 15px;
+    right: 10px;
+    display: none;
+}
+.current1{
+    display: block;
+}

@@ -1,0 +1,17 @@
+ul{list-style: none}
+*{margin:0; padding:0;}
+div{
+    width: 1150px;
+    height: 400px;
+    margin: 50px auto;
+    border: 1px solid red;
+    overflow: hidden;
+}
+div li {
+    width: 240px;
+    height: 400px;
+    float: left;
+}
+div ul {
+    width: 1300px;
+}
