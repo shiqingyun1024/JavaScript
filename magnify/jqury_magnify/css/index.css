@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.up{
+    width: 450px;
+    height: 450px;
+    border: 1px solid #2195de;
+    margin: 50px 0 0 50px;
+    position: relative;
+    cursor: move;
+}
+#down{
+    width: 450px;
+    height: 60px;
+    border: 1px solid #9521de;
+    margin: 0 0 0 50px;
+}
+#little{
+    width: 100px;
+    height: 100px;
+    background: rgba(255,255,0,.4);
+    position: absolute;
+    display: none;
+}
+#large{
+    width: 550px;
+    height: 550px;
+    border: 1px solid #2195de;
+    position: absolute;
+    left: 470px;
+    top: 0;
+    display: none;
+    overflow: hidden;
+}
