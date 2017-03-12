@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用jquery-etalage插件做的放大镜效果</title>
+    <link rel="stylesheet" href="css/etalage.css"/>
+</head>
+<body>
+<!--放置图片-->
+<!--每个<li>标签中放两个<img>，第一张的class必须是etalage_thumb_image，用于显示未放大的图片，第二个class必须是etalage_source_image,用于显示放大镜放大出来的部分；<img>标签中可以放一个title属性，里面写的内容可以在被放大出的图片底部显示出来-->
+<ul id="etalage">
+    <li>
+        <img clas="etalage_thumb_image" src="images/01.jpg" alt="">
+        <img class="etalage_source_image" src="images/01big.jpg" alt="">
+    </li>
+    <li>
+        <img clas="etalage_thumb_image" src="images/02.jpg" alt="">
+        <img class="etalage_source_image" src="images/02big.jpg" alt="">
+    </li>
+    <li>
+        <img clas="etalage_thumb_image" src="images/03.jpg" alt="">
+        <img class="etalage_source_image" src="images/03big.jpg" alt="">
+    </li>
+    <li>
+        <img clas="etalage_thumb_image" src="images/04.jpg" alt="">
+        <img class="etalage_source_image" src="images/04big.jpg" alt="">
+    </li>
+    <li>
+        <img clas="etalage_thumb_image" src="images/05.jpg" alt="">
+        <img class="etalage_source_image" src="images/05big.jpg" alt="">
+    </li>
+</ul>
+<!--把图片配置好以后，需要调用这个插件给出的唯一方法，就可以有效果了：只需要让<ul>标签执行一个etalage方法即可，而且最少只需要写四个属性即可完成一个酷炫的放大镜效果，还会自动的渐隐渐现效果，
+通常会把里面的调用放在$(document).ready()中，但如果要动态的修改图片的img或动态的添加ul里面的li，就不能把函数的调用放在$(document).ready()中，好在你把这个函数的调用放在哪都可以，而且在没调用之前，<ul>中的内容并不会显示，而且不占页面的大小，相当于display:none;-->
+</body>
+</html>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery.etalage.min.js"></script>
+<script src="js/index.js"></script>
